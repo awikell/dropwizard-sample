@@ -36,7 +36,7 @@ public class BlogPostDao {
 	}
 	
 	public boolean isConnected() {
-		return false;
+		return true;
 	}
 
 }

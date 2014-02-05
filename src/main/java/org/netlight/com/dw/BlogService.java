@@ -1,6 +1,7 @@
 package org.netlight.com.dw;
 
 import org.netlight.com.dw.dao.BlogPostDao;
+import org.netlight.com.dw.health.BlogPostDaoHealthCheck;
 import org.netlight.com.dw.resource.BlogResource;
 
 import com.yammer.dropwizard.Service;
@@ -29,5 +30,7 @@ public class BlogService extends Service<BlogServiceConfiguration>
 		BlogPostDao blogPostDao = new BlogPostDao();
 		BlogResource blogResource = new BlogResource(blogPostDao);
 		env.addResource(blogResource);
+		BlogPostDaoHealthCheck daoHealthCheck = new BlogPostDaoHealthCheck(blogPostDao);
+		env.addHealthCheck(daoHealthCheck);
 	}
 }
