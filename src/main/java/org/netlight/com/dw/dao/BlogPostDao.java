@@ -34,5 +34,9 @@ public class BlogPostDao {
 		blogPostList.add(new BlogPost(idCounter, title, text, new DateTime()));
 		idCounter++;
 	}
+	
+	public boolean isConnected() {
+		return false;
+	}
 
 }
