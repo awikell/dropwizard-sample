@@ -1,8 +1,11 @@
 *.class
 target/
 .idea/
-
+.classpath
+.project
+.settings*
 # Package Files #
 *.jar
 *.war
 *.ear
+
