@@ -14,8 +14,10 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.netlight.com.dw.dao.BlogPostDao;
+import org.netlight.com.dw.dao.CommentDao;
 import org.netlight.com.dw.model.AddBlogPostJson;
 import org.netlight.com.dw.model.BlogPost;
+import org.netlight.com.dw.model.Comment;
 
 import com.yammer.dropwizard.jersey.params.LongParam;
 
@@ -25,9 +27,11 @@ import com.yammer.dropwizard.jersey.params.LongParam;
 public class BlogResource {
 
 	private BlogPostDao blogPostDao;
+	private CommentDao commentDao;
 	
-	public BlogResource(BlogPostDao blogPostDao) {
+	public BlogResource(CommentDao commentDao, BlogPostDao blogPostDao) {
 		this.blogPostDao = blogPostDao;
+		this.commentDao = commentDao;
 	}
 	
 	@GET
@@ -44,6 +48,12 @@ public class BlogResource {
 		} else {
 			return Response.ok(result).build();
 		}
+    }
+	
+	@GET
+	@Path("/{id}/comments")
+    public List<Comment> getCommentsForBlogPost(@PathParam("id") LongParam id) {
+		return commentDao.getAllCommentsForBlogPost(id.get());
     }
 	
 	@POST

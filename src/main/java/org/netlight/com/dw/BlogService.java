@@ -1,7 +1,9 @@
 package org.netlight.com.dw;
 
 import org.netlight.com.dw.dao.BlogPostDao;
+import org.netlight.com.dw.dao.CommentDao;
 import org.netlight.com.dw.resource.BlogResource;
+import org.netlight.com.dw.resource.CommentResource;
 
 import com.yammer.dropwizard.Service;
 import com.yammer.dropwizard.config.Bootstrap;
@@ -27,7 +29,10 @@ public class BlogService extends Service<BlogServiceConfiguration>
 	public void run(BlogServiceConfiguration configuration, Environment env)
 			throws Exception {
 		BlogPostDao blogPostDao = new BlogPostDao();
-		BlogResource blogResource = new BlogResource(blogPostDao);
+		CommentDao commentDao = new CommentDao();
+		BlogResource blogResource = new BlogResource(commentDao, blogPostDao);
+		CommentResource commentResource = new CommentResource(commentDao);
 		env.addResource(blogResource);
+		env.addResource(commentResource);
 	}
 }

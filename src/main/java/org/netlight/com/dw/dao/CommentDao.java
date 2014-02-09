@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
-import org.netlight.com.dw.model.BlogPost;
 import org.netlight.com.dw.model.Comment;
 
 public class CommentDao {
