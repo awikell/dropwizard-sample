@@ -37,7 +37,7 @@ public class BlogResource {
 	
 	@GET
 	@Path("/{id}")
-    public Response getAllBlogPosts(@PathParam("id") LongParam id) {
+    public Response getBlogPost(@PathParam("id") LongParam id) {
 		BlogPost result = blogPostDao.get(id.get());
 		if(result == null) {
 			return Response.status(Status.NOT_FOUND).build();
