@@ -1,6 +1,7 @@
 package org.netlight.com.dw.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.joda.time.DateTime;
@@ -44,6 +45,17 @@ public class CommentDao {
 	public void addComment(String comment, String author, long blogPostId) {
 		commentList.add(new Comment(idCounter, comment, author, new DateTime(), blogPostId));
 		idCounter++;
+	}
+	
+	public boolean deleteComment(long commentId) {
+		Iterator<Comment> iter = commentList.iterator();
+		while(iter.hasNext()) {
+			if(iter.next().getId() == commentId) {
+				iter.remove();
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
