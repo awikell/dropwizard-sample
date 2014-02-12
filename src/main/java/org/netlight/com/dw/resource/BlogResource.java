@@ -18,6 +18,9 @@ import org.netlight.com.dw.model.AddBlogPostJson;
 import org.netlight.com.dw.model.BlogPost;
 
 import com.yammer.dropwizard.jersey.params.LongParam;
+import com.yammer.metrics.annotation.ExceptionMetered;
+import com.yammer.metrics.annotation.Metered;
+import com.yammer.metrics.annotation.Timed;
 
 @Path("/blog")
 @Produces(MediaType.APPLICATION_JSON)
@@ -31,6 +34,7 @@ public class BlogResource {
 	}
 	
 	@GET
+	@Timed
     public List<BlogPost> getAllBlogPosts() {
 		return blogPostDao.getAll();
     }
@@ -47,6 +51,8 @@ public class BlogResource {
     }
 	
 	@POST
+	@Metered
+	@ExceptionMetered
     public Response addBlogPost(@Valid AddBlogPostJson addPostJson) {
 		blogPostDao.addBlogPost(addPostJson.getTitle(), addPostJson.getText());
 		return Response.ok().build();
