@@ -13,8 +13,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import com.yammer.dropwizard.auth.Auth;
 import org.netlight.com.dw.dao.BlogPostDao;
 import org.netlight.com.dw.model.AddBlogPostJson;
+import org.netlight.com.dw.model.Author;
 import org.netlight.com.dw.model.BlogPost;
 
 import com.yammer.dropwizard.jersey.params.LongParam;
@@ -47,7 +49,7 @@ public class BlogResource {
     }
 	
 	@POST
-    public Response addBlogPost(@Valid AddBlogPostJson addPostJson) {
+    public Response addBlogPost(@Auth Author author, @Valid AddBlogPostJson addPostJson) {
 		blogPostDao.addBlogPost(addPostJson.getTitle(), addPostJson.getText());
 		return Response.ok().build();
     }

@@ -1,4 +1,3 @@
-/*
 package org.netlight.com.dw.security;
 
 import com.google.common.base.Optional;
@@ -12,7 +11,9 @@ public class BasicAuthenticator implements Authenticator<BasicCredentials, Autho
     private final static String PASSWORD = "password";
 
     public Optional<Author> authenticate(BasicCredentials basicCredentials) throws AuthenticationException {
-        return null;
+        if (PASSWORD.equals(basicCredentials.getPassword())) {
+            return Optional.of(new Author(basicCredentials.getUsername()));
+        }
+        return Optional.absent();
     }
 }
-*/
