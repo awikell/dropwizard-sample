@@ -1,13 +1,19 @@
 package org.netlight.com.dw.model;
 import org.joda.time.DateTime;
 
+@SuppressWarnings("unused")
 public class BlogPost {
 	private final long id;
 	private String title;
 	private String text;
 	private final DateTime createdDate;
-	
-	public BlogPost(long id, String title, String text, DateTime createdDate) {
+
+    public BlogPost() {
+        id = 0l;
+        createdDate=null;
+    }
+
+    public BlogPost(long id, String title, String text, DateTime createdDate) {
 		this.id = id;
 		this.title = title;
 		this.text = text;
